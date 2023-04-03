@@ -128,18 +128,18 @@ while True:
 		try:
 			#if (ready == 'Not Ready' and page_reload == True) or 'betclic.fr/live' not in driver.current_url:
 			if ('<span class="icons">Information</span>' in driver.page_source or '<span class="icons">Attention !</span>' in driver.page_source) or ('betclic.fr/live' not in driver.current_url or page_reload == True):
-				driver.implicitly_wait(14)
+				driver.implicitly_wait(8)
 				page_action(driver, bet_xpath, link, initial_amount)
 				page_reload = False
 			elif "Félicitations, ton pari est validé !" in driver.page_source:
 				with open('file_com/results.txt', 'w') as q:
 					q.write('Bet successful!')
-				driver.implicitly_wait(14)
+				driver.implicitly_wait(8)
 				page_action(driver, bet_xpath, link, initial_amount)
 				page_reload = False
 				#'<div data-qa="bet-confirmation-title"' in driver.page_source or 
 			elif '<span class="icons">Cote suspendue' in driver.page_source:
-				driver.implicitly_wait(14)
+				driver.implicitly_wait(8)
 				page_action(driver, bet_xpath, link, initial_amount)
 				page_reload = False
 			else:
