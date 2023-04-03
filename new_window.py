@@ -38,6 +38,9 @@ with open(f"file_com/latest_amount.txt", "w") as f:
 with open(f'file_com/amount_counter.txt', 'w') as f:
 	f.write('0')
 
+with open(f'file_com/initial_amount.txt', 'w') as f:
+	f.write(amount)
+
 with open(f'file_com/exit.txt', 'w') as q:
 	q.write('false')
 
@@ -135,7 +138,9 @@ def changeAmount():
 		f.write(change_amount.text())
 	with open(f'file_com/amount_counter.txt', 'w') as f:
 		f.write('0')
-
+	with open(f'file_com/initial_amount.txt', 'w') as f:
+		f.write(change_amount.text())
+		
 def startButton():
 	with open(f'file_com/running_status.txt', 'w') as f:
 		f.write('start')

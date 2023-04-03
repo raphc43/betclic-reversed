@@ -24,11 +24,12 @@ def request(flow):
 
 					if ready == True:
 						with open('file_com/release.txt', 'r') as f:
+							released_port = f.readline()
 							with open('file_com/initial_odd.txt', 'r') as b:
 								initial_odd = float(b.readline())
 								request_data = json.loads(flow.request.content.decode("utf-8"))
 								current_odd = float(request_data['bets'][0]["betSelections"][0]["odds"])
-								if port_arg in f.readline() and current_odd >= initial_odd:
+								if port_arg in released_port and current_odd >= initial_odd:
 									first_request_completed = False
 									ready = False
 									released = True
@@ -39,27 +40,34 @@ def request(flow):
 									with open(f'file_com/ready {port_arg}.txt', 'w') as q:
 										q.write('Not Ready')
 									return flow
-								elif port_arg in f.readline():
+								if port_arg in released_port and current_odd < initial_odd:
 									first_request_completed = False
 									ready = False
-									flow.kill() # Killing request
 									with open('file_com/release.txt', 'w') as q:
 										q.write('NULL')
 									with open('file_com/latest.txt', 'w') as q:
 										q.write('NULL')
+									with open(f'file_com/ready {port_arg}.txt', 'w') as q:
+										q.write('Not Ready')
 									with open('file_com/results.txt', 'w') as q:
 										q.write('Odd was lower! Try again')
+									flow.kill() # Killing request
 									return flow
 
 					end = time.time()
 
 					# discarding request and breaking loop if timeout
-					if (int(end - start)) >= 7: 
+					if (int(end - start)) >= 9: 
+						with open('file_com/release.txt', 'w') as q:
+							q.write('NULL')
+						with open('file_com/latest.txt', 'w') as q:
+							q.write('NULL')
+						with open(f'file_com/ready {port_arg}.txt', 'w') as q:
+							q.write('Not Ready')
 						flow.kill() # Killing request
 						first_request_completed = False
 						ready = False
-						with open(f'file_com/ready {port_arg}.txt', 'w') as f:
-							f.write('Not Ready')
+
 						return 
 			except:
 				pass

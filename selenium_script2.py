@@ -79,6 +79,8 @@ def page_action(driver, bet_xpath, link, initial_amount):
 			with open(f'file_com/amount_counter.txt', 'w') as f:
 				f.write(str(counter+1))
 		else:
+			with open(f'file_com/initial_amount.txt', 'r') as f:
+				initial_amount = f.readline()
 			amount = initial_amount
 			with open(f'file_com/latest_amount.txt', 'w') as f:
 				f.write(amount)

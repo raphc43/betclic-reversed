@@ -26,7 +26,7 @@ def startBet():
 app = QApplication([]) # App instance
 
 window = QWidget()
-window.setWindowTitle("QDialog")
+window.setWindowTitle("Bet Selection")
 dialogLayout = QVBoxLayout()
 
 bet_xpath = QLineEdit()
