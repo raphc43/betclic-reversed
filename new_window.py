@@ -59,11 +59,11 @@ with open(f'file_com/running_status.txt', 'w') as f:
 #for i in range(1, int(instances)+1):
 if "betclic.fr/live" not in link:
 	for i in range(1, 5):
-		time.sleep(3)
+		time.sleep(3.5)
 		subprocess.Popen(['python.exe', "selenium_script2.py", f"808{i}", bet_name, amount, link])
 else:
 	for i in range(1, 5):
-		time.sleep(3)
+		time.sleep(3.5)
 		subprocess.Popen(['python.exe', "selenium_script.py", f"808{i}", bet_name, amount, link])
 
 
@@ -106,8 +106,11 @@ def release():
 	with open(f"file_com/latest.txt", "r") as f:
 		latest_port = f.readline()
 
-	with open(f"file_com/ready {latest_port}.txt", "r") as f:
-		ready_state = f.readline()
+	try:
+		with open(f"file_com/ready {latest_port}.txt", "r") as f:
+			ready_state = f.readline()
+	except:
+		ready_state = 'Not Ready'
 
 	if latest_port != 'NULL' and ready_state == "Ready":
 		with open(f"file_com/release.txt", "w") as q:
