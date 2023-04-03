@@ -16,7 +16,12 @@ from PyQt6.QtWidgets import (
 )
 
 def startBet():
-	subprocess.Popen(['python.exe', "new_window.py", bet_name.text(), amount.text()])
+	if "https://www." not in link.text():
+		new_link = f"https://www.{link.text()}"
+	else:
+		new_link = link.text()
+
+	subprocess.Popen(['python.exe', "new_window.py", bet_xpath.text(), amount.text(), new_link])
 
 app = QApplication([]) # App instance
 
@@ -24,13 +29,14 @@ window = QWidget()
 window.setWindowTitle("QDialog")
 dialogLayout = QVBoxLayout()
 
-bet_name = QLineEdit()
+bet_xpath = QLineEdit()
 amount = QLineEdit()
-instances = QLineEdit()
+link = QLineEdit()
 
 formLayout = QFormLayout()
-formLayout.addRow("Bet name:", bet_name)
+formLayout.addRow("Bet Xpath:", bet_xpath)
 formLayout.addRow("Amount:", amount)
+formLayout.addRow("Link:", link)
 #formLayout.addRow("Instances:", instances)
 dialogLayout.addLayout(formLayout)
 '''buttons = QDialogButtonBox()

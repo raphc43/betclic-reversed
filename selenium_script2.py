@@ -85,7 +85,7 @@ def page_action(driver, bet_xpath, link, initial_amount):
 			with open(f'file_com/amount_counter.txt', 'w') as f:
 				f.write('0')
 
-	driver.get('https://www.betclic.fr/live') # Fetching page
+	driver.get(link) # Fetching page
 	driver.find_element(By.TAG_NAME, "html").send_keys(Keys.END)
 	time.sleep(3)
 	print('[+] Opening the bet')
@@ -127,7 +127,7 @@ while True:
 	if 'start' in status:
 		try:
 			#if (ready == 'Not Ready' and page_reload == True) or 'betclic.fr/live' not in driver.current_url:
-			if ('<span class="icons">Information</span>' in driver.page_source or '<span class="icons">Attention !</span>' in driver.page_source) or ('betclic.fr/live' not in driver.current_url or page_reload == True):
+			if ('<span class="icons">Information</span>' in driver.page_source or '<span class="icons">Attention !</span>' in driver.page_source) or page_reload == True:
 				driver.implicitly_wait(14)
 				page_action(driver, bet_xpath, link, initial_amount)
 				page_reload = False
