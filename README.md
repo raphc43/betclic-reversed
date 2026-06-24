@@ -1,4 +1,4 @@
-# Betclic Live Bet Placement
+## Betclic Live Bet Placement
 
 1. Developed a Python desktop application that integrates with Betclic's API for login, odds retrieval, bet information, and live bet placement.
 
