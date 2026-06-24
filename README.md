@@ -4,7 +4,7 @@
 
 2. Built a multi-instance system where several independent processes run in parallel, helping reduce delays when placing live bets.
 
-3. Implemented an automated balance management mechanism that cancels an active bet when needed to free up sufficient funds. This mechanism allows one live bet to succeed.
+3. Implemented an automated balance management mechanism that cancels an active bet when needed to free up sufficient funds, ensuring only one live bet succeeds after the event is triggered.
 
 4. Optimised the bet placement workflow to minimise latency by allowing multiple instances to compete, ensuring the fastest request completes successfully.
 
