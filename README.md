@@ -11,4 +11,4 @@
 5. Managed the project end-to-end, including development, testing, performance improvements, troubleshooting, and ongoing maintenance.
 
 ## Language & Libraries
-Python, Request, PyQT, BeautifulSoup and Selenium
+Python, Requests, PyQT, BeautifulSoup and Selenium
